@@ -12,11 +12,13 @@ if weekday == 1:
     with open("quotes.txt") as quote_file:
         all_quote = quote_file.readlines()
         quote = random.choice(all_quote)
-    print(quote)
+        quoter = quote.split()[-2:]
+        said = " ".join(quoter)
+
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
         connection.login(user=my_email, password=password)
         connection.sendmail(from_addr=my_email,
                             to_addrs="bendzandu117@yahoo.com",
-                            msg=f"Subject:Monday Words of Wisdom\n\n{quote}")
+                            msg=f"Subject:Words of Wisdom from {said}\n\n{quote}")
 
